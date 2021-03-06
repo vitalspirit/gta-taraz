@@ -1,0 +1,64 @@
+{% extends 'stops/main.html' %}
+
+
+{% block content %}
+
+<div class="d-flex justify-content-center">
+<div class="py-3 col-md-7" style = "background-color: white;">
+<form action="{% url 'stops:add_shutdown' %}" method="POST">
+  {% csrf_token %}
+    <div class="row">
+    	<div class="col">
+
+          <div class="">
+            <a class="btn btn-lg btn-block" disabled href="">Report new shutdown form</a>
+            <label for="formGroupExampleInput" class="form-label">Choose Station</label><br>
+            <select name="st_select" class="form-control" aria-label="Default select example">
+                <option selected>Choose Station</option>
+                <option value="1">CS-4</option>
+                <option value="2">CCS-4</option>
+                <option value="3">CCS-3</option>
+                <option value="4">CCS-5</option>
+            </select>
+            <br>
+            <label for="formGroupExampleInput" class="form-label">Choose GTU</label><br>
+            <select name="gtu" class="form-control" aria-label="Default select example">
+                <option selected>Choose GTU</option>
+                <option value="1">GTU #1</option>
+                <option value="2">GTU #2</option>
+                <option value="3">GTU #3</option>
+                <option value="4">GTU #4</option>
+            </select>
+            <br>
+            <label for="formGroupExampleInput" class="form-label">Choose Stop type</label><br>
+            <select name="type" class="form-control" aria-label="Default select example">
+                <option selected>Choose Stop type</option>
+                <option value="Auto">Auto shutdown</option>
+                <option value="Forced">Forced normal stop</option>
+            </select>
+          </div>
+          <br>
+          <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">DATETIME</label>
+              <input name="datetime" type="datetime-local" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">ACT number</label>
+                <input name="act_number" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+              </div>
+              <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Shutdown description</label>
+                  <textarea name= "desc" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                </div>
+                <br>
+<button type="submit" class="btn btn-primary btn-lg btn-block">ADD SD</button>
+    </div>
+    </div>
+</form>
+
+</div>
+</div>
+
+{% endblock content%}

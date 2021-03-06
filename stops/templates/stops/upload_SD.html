@@ -1,0 +1,39 @@
+{% extends 'stops/main.html' %}
+
+
+{% block content %}
+<div class="d-flex justify-content-center">
+<div class="w-50"><br><br>
+  <div class="card card_shadow">
+
+    <h1 class="card-header">Добавление нового останова</h1>
+
+    <div class="card-body">
+
+      <div class="form-group">
+        <form  method ="POST" enctype="multipart/form-data" action="">
+          {% csrf_token %}
+          {{form.sd_type.label}} <br>
+          {{form.sd_type}} <br>
+          Компрессорная станция <br>
+          {{form.station}} <br>
+          {{form.gtu.label}} (цифрой)<br>
+          {{form.gtu}} <br>
+          {{form.datetime.label}} <br>
+          {{form.datetime}} <br>
+          {{form.act_number.label}} (номер Акта) <br>
+          {{form.act_number}} <br>
+          {{form.desc.label}} <br>
+          {{form.desc}} <br>
+          {{form.detailed_desc.label}} <br>
+          {{form.detailed_desc}} <br>
+          Приложить Акт расследования
+          {{form.sd_act}} <br>
+          <button type="submit" id="download_button" class="btn btn-secondary btn-lg">Загрузить данные</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+{% endblock content%}

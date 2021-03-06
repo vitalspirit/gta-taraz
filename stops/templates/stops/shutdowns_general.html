@@ -1,0 +1,213 @@
+{% extends 'stops/main.html' %}
+
+
+{% block content %}
+
+
+<br>
+<div style="height: 100vh">
+  <div class="row-md d-flex justify-content-center">
+    <div class=" sd_choice_div card_shadow rounded d-flex align-items-center me-5">
+      <ul class="list-group list-group-flush" style="width: 450px;">
+        <li class="list-group-item">Добавить останов<a id="download_button" class="btn btn-secondary " style="width:120px; margin-left:100px;" href="{% url 'stops:upload_SD' %}"> + </a></li>
+        <li class="list-group-item">
+          <div class="d-flex justify-content-start">
+            <p style="display: flex; justify-content: center; align-items: center;">Остановы за</p>
+            <form style="margin-left:25px;" class="form-inline d-flex justify-content-center" action="{% url 'stops:shutdowns_general_request' %}" method="POST">
+              {% csrf_token %}
+              <select style="width: 100px;" name='year' class=" form-control " aria-label=".form-select-lg example">
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option selected value="2021">2021</option>
+              </select>
+              <button type="submit" id="download_button" class="btn btn-secondary" style="width:120px; margin-left:25px;">Просмотр</button>
+            </form>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    {% if year %}
+
+    <div style="width: 200px;">
+      <div class="col-md ">
+        <div class="card_shadow card text-center mb-1" id="cs_card" style="height:210px;">
+          <div class="card-header">
+            <h3 class="font-weight-bold grey_text">CS-4</h3>
+          </div>
+          <div class="card-body">
+            <h3 class="font-weight-bold card-title text-danger display-4">{{cs_4_sd_count_year}}</h3>
+            <p class="text-center text-danger">Остановов</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="width: 200px;">
+      <div class="col-md">
+        <div class="card_shadow card text-center mb-3" id="cs_card" style="height:210px;">
+          <div class="card-header">
+            <h3 class="font-weight-bold grey_text">CCS-4</h3>
+          </div>
+          <div class="card-body">
+            <h3 class="font-weight-bold card-title text-danger display-4">{{ccs_4_sd_count_year}}</h3>
+            <p class="text-center text-danger">Остановов</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="width: 200px;">
+      <div class="col-md">
+        <div class="card_shadow card text-center mb-3" id="cs_card" style="height:210px;">
+          <div class="card-header">
+            <h3 class="font-weight-bold grey_text">CCS-3</h3>
+          </div>
+          <div class="card-body">
+            <h3 class="font-weight-bold card-title text-danger display-4">{{ccs_3_sd_count_year}}</h3>
+            <p class="text-center text-danger">Остановов</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="width: 200px;">
+      <div class="col-md">
+        <div class="card_shadow card text-center mb-3" id="cs_card" style="height:210px;">
+          <div class="card-header">
+            <h3 class="font-weight-bold grey_text">CCS-5</h3>
+          </div>
+          <div class="card-body">
+            <h3 class="font-weight-bold card-title text-danger display-4">{{ccs_5_sd_count_year}}</h3>
+            <p class="text-center text-danger">Остановов</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <div class="col-md-9 ">
+      <br>
+      <br>
+      <h2 class="d-flex justify-content-center light_grey_text">Информация по остановам в {{year}} году</h2>
+      {% if cs_4_sd_count_year > 0 %}
+      <div class="card card-body">
+        <a class="btn btn-lg btn-block" disabled href="">CS-4</a>
+        <table class="table table-sm">
+          <tr class="yellow_bg">
+            <td class="text-center small_text" style="width: 15%;">Дата и время останова</td>
+            <th class="text-center small_text" style="width: 5%;">ГПА №</th>
+            <th class="text-center small_text" style="width: 8%;">Тип останова</th>
+            <th class="text-center small_text" style="width: 6%;">Номер акта</th>
+            <th class="text-center small_text">Причина останова</th>
+            <th class="text-center small_text" style="width: 10%;">Скачать акт</th>
+            <th class="text-center small_text" style="width: 10%;">Запись внесена</th>
+          </tr>
+          {% for sd in cs_4_sd_list %}
+          <tr>
+            <td class="text-center">{{sd.datetime|date:"d M Y H:i"}}</td>
+            <td class="text-center">{{sd.gtu}}</td>
+            <td class="text-center">{{sd.sd_type}}</td>
+            <td class="text-center">{{sd.act_number}}</td>
+            <td>{{sd.desc}}</td>
+            <td class="text-center"><a href="{{ sd.sd_act.url }}" id="download_button" class="btn btn-secondary btn-sm">Download</a>
+            </td>
+            <td class="small_txt text-center">{{sd.created|date:"d M Y H:i"}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      {% endif %}
+      {% if ccs_4_sd_count_year > 0 %}
+      <hr>
+      <div class="card card-body">
+        <a class="btn btn-lg btn-block" disabled href="">CCS-4</a>
+        <table class="table table-sm">
+          <tr class="yellow_bg">
+            <td class="text-center small_text" style="width: 15%;">Дата и время останова</td>
+            <th class="text-center small_text" style="width: 5%;">ГПА №</th>
+            <th class="text-center small_text" style="width: 8%;">Тип останова</th>
+            <th class="text-center small_text" style="width: 6%;">Номер акта</th>
+            <th class="text-center small_text">Причина останова</th>
+            <th class="text-center small_text" style="width: 10%;">Скачать акт</th>
+            <th class="text-center small_text" style="width: 10%;">Запись внесена</th>
+          </tr>
+          {% for sd in ccs_4_sd_list %}
+          <tr>
+            <td class="text-center">{{sd.datetime|date:"d M Y H:i"}}</td>
+            <td class="text-center">{{sd.gtu}}</td>
+            <td class="text-center">{{sd.sd_type}}</td>
+            <td class="text-center">{{sd.act_number}}</td>
+            <td>{{sd.desc}}</td>
+            <td class="text-center"><a href="{{ sd.sd_act.url }}" id="download_button" class="btn btn-secondary btn-sm">Download</a>
+            </td>
+            <td class="small_txt text-center">{{sd.created|date:"d M Y H:i"}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      {% endif %}
+      {% if ccs_3_sd_count_year > 0 %}
+      <hr>
+      <div class="card card-body">
+        <a class="btn btn-lg btn-block" disabled href="">CCS-3</a>
+        <table class="table table-sm">
+          <tr class="yellow_bg">
+            <td class="text-center small_text" style="width: 15%;">Дата и время останова</td>
+            <th class="text-center small_text" style="width: 5%;">ГПА №</th>
+            <th class="text-center small_text" style="width: 8%;">Тип останова</th>
+            <th class="text-center small_text" style="width: 6%;">Номер акта</th>
+            <th class="text-center small_text">Причина останова</th>
+            <th class="text-center small_text" style="width: 10%;">Скачать акт</th>
+            <th class="text-center small_text" style="width: 10%;">Запись внесена</th>
+          </tr>
+          {% for sd in ccs_3_sd_list %}
+          <tr>
+            <td class="text-center">{{sd.datetime|date:"d M Y H:i"}}</td>
+            <td class="text-center">{{sd.gtu}}</td>
+            <td class="text-center">{{sd.sd_type}}</td>
+            <td class="text-center">{{sd.act_number}}</td>
+            <td>{{sd.desc}}</td>
+            <td class="text-center"><a href="{{ sd.sd_act.url }}" id="download_button" class="btn btn-secondary btn-sm">Download</a>
+            </td>
+            <td class="small_txt text-center">{{sd.created|date:"d M Y H:i"}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      {% endif %}
+      {% if ccs_5_sd_count_year > 0 %}
+      <hr>
+      <div class="card card-body">
+        <a class="btn btn-lg btn-block" disabled href="">CCS-5</a>
+        <table class="table table-sm">
+          <tr class="yellow_bg">
+            <td class="text-center small_text" style="width: 15%;">Дата и время останова</td>
+            <th class="text-center small_text" style="width: 5%;">ГПА №</th>
+            <th class="text-center small_text" style="width: 8%;">Тип останова</th>
+            <th class="text-center small_text" style="width: 6%;">Номер акта</th>
+            <th class="text-center small_text">Причина останова</th>
+            <th class="text-center small_text" style="width: 10%;">Скачать акт</th>
+            <th class="text-center small_text" style="width: 10%;">Запись внесена</th>
+          </tr>
+          {% for sd in ccs_5_sd_list %}
+          <tr>
+            <td class="text-center">{{sd.datetime|date:"d M Y H:i"}}</td>
+            <td class="text-center">{{sd.gtu}}</td>
+            <td class="text-center">{{sd.sd_type}}</td>
+            <td class="text-center">{{sd.act_number}}</td>
+            <td>{{sd.desc}}</td>
+            <td class="text-center"><a href="{{ sd.sd_act.url }}" id="download_button" class="btn btn-secondary btn-sm">Download</a>
+            </td>
+            <td class="small_txt text-center">{{sd.created|date:"d M Y H:i"}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      {% endif %}
+    </div>
+
+    {% endif %}
+
+  </div>
+</div>
+
+{% endblock content%}

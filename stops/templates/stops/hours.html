@@ -1,0 +1,209 @@
+{% extends 'stops/main.html' %}
+
+
+{% block content %}
+
+<div class="d-flex justify-content-center">
+
+
+<div class="col-md-6 ">
+  <br>
+<h3 class="text-center light_grey_text">Наработка ГПА в часах</h3><br>
+<table class="table table-bordered ">
+  <thead id="bg">
+    <tr class="yellow_bg">
+      <th class="text-center" style="width: 15%;" scope="col">Station</th>
+      <th class="text-center" style="width: 5%;" scope="col">GTU </th>
+      <th class="text-center" style="width: 20%;" scope="col">2021</th>
+      <th class="text-center" style="width: 20%;" scope="col">2020</th>
+      <th class="text-center" style="width: 20%;" scope="col">2019</th>
+      <th class="text-center" style="width: 20%;" scope="col">2018</th>
+    </tr>
+  </thead>
+  <tbody style ="height:100px" >
+    <tr >
+      <th class="text-center" scope="row" rowspan = "5"><h1>CS-4</h3></th>
+      <th class="text-center"scope="row">1</th>
+      <td class="text-center">000</td>
+      <td class="text-center">000</td>
+      <td class="text-center">{% for item in cs_4_hours %}{% if item.gtu == "1" and item.year == "2019" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+      <td class="text-center">{% for item in cs_4_hours %}{% if item.gtu == "1" and item.year == "2018" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+    </tr>
+    <tr>
+      <th class="text-center" scope="row">2</th>
+      <td class="text-center">000</td>
+      <td class="text-center">000</td>
+      <td class="text-center">{% for item in cs_4_hours %}{% if item.gtu == "2" and item.year == "2019" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+      <td class="text-center">{% for item in cs_4_hours %}{% if item.gtu == "2" and item.year == "2018" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+    </tr>
+    <tr>
+      <th class="text-center" scope="row">3</th>
+      <td class="text-center">000</td>
+      <td class="text-center">000</td>
+      <td class="text-center">{% for item in cs_4_hours %}{% if item.gtu == "3" and item.year == "2019" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+      <td class="text-center">{% for item in cs_4_hours %}{% if item.gtu == "3" and item.year == "2018" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+    </tr>
+    <tr>
+      <th class="text-center" scope="row">4</th>
+      <td class="text-center">000</td>
+      <td class="text-center">000</td>
+      <td class="text-center">{% for item in cs_4_hours %}{% if item.gtu == "4" and item.year == "2019" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+      <td class="text-center">{% for item in cs_4_hours %}{% if item.gtu == "4" and item.year == "2018" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+    </tr>
+    <tr>
+      <th class="text-center" scope="row">TOTAL</th>
+      <td class="text-center">-</td>
+      <td class="text-center">-</td>
+      <td class="text-center"><b>{{cs_4_2019_total.w_hours__sum}}</b></td>
+      <td class="text-center"><b>{{cs_4_2018_total.w_hours__sum}}</b></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+
+
+
+
+
+
+<table class = "table-sm table table-bordered">
+  <thead>
+    <tr class="yellow_bg">
+      <th class="text-center" style="width: 15%;" scope="col">Station</th>
+      <th class="text-center" style="width: 5%;" scope="col">GTU </th>
+      <th class="text-center" style="width: 20%;" scope="col">2021</th>
+      <th class="text-center" style="width: 20%;" scope="col">2020</th>
+      <th class="text-center" style="width: 20%;" scope="col">2019</th>
+      <th class="text-center" style="width: 20%;" scope="col">2018</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="text-center" scope="row" rowspan = "4"><h1>CCS-4</h3></th>
+      <th class="text-center">1</th>
+      <td class="text-center">000</td>
+      <td class="text-center">000</td>
+      <td class="text-center">{% for item in ccs_4_hours %}{% if item.gtu == "1" and item.year == "2019" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+      <td class="text-center">{% for item in ccs_4_hours %}{% if item.gtu == "1" and item.year == "2018" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+    </tr>
+    <tr>
+      <th class="text-center" scope="row">2</th>
+      <td class="text-center">000</td>
+      <td class="text-center">000</td>
+      <td class="text-center">{% for item in ccs_4_hours %}{% if item.gtu == "2" and item.year == "2019" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+      <td class="text-center">{% for item in ccs_4_hours %}{% if item.gtu == "2" and item.year == "2018" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+    </tr>
+    <tr>
+      <th class="text-center" scope="row">3</th>
+      <td class="text-center">000</td>
+      <td class="text-center">000</td>
+      <td class="text-center">{% for item in ccs_4_hours %}{% if item.gtu == "3" and item.year == "2019" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+      <td class="text-center">{% for item in ccs_4_hours %}{% if item.gtu == "3" and item.year == "2018" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+    </tr>
+    <tr>
+      <th class="text-center" scope="row">TOTAL</th>
+      <td class="text-center">000</td>
+      <td class="text-center">000</td>
+      <td class="text-center"><b>{{ccs_4_2019_total.w_hours__sum}}</b></td>
+      <td class="text-center"><b>{{ccs_4_2018_total.w_hours__sum}}</b></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<br>
+<table class = "table-sm table table-bordered">
+  <thead>
+    <tr class="yellow_bg">
+      <th class="text-center" style="width: 15%;" scope="col">Station</th>
+      <th class="text-center" style="width: 5%;" scope="col">GTU </th>
+      <th class="text-center" style="width: 20%;" scope="col">2021</th>
+      <th class="text-center" style="width: 20%;" scope="col">2020</th>
+      <th class="text-center" style="width: 20%;" scope="col">2019</th>
+      <th class="text-center" style="width: 20%;" scope="col">2018</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="text-center" scope="row" rowspan = "4"><h1>CCS-3</h3></th>
+      <th class="text-center">1</th>
+      <td class="text-center">000</td>
+      <td class="text-center">000</td>
+      <td class="text-center">{% for item in ccs_3_hours %}{% if item.gtu == "1" and item.year == "2019" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+      <td class="text-center">{% for item in ccs_3_hours %}{% if item.gtu == "1" and item.year == "2018" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+    </tr>
+    <tr>
+      <th class="text-center" scope="row">2</th>
+      <td class="text-center">000</td>
+      <td class="text-center">000</td>
+      <td class="text-center">{% for item in ccs_3_hours %}{% if item.gtu == "2" and item.year == "2019" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+      <td class="text-center">{% for item in ccs_3_hours %}{% if item.gtu == "2" and item.year == "2018" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+    </tr>
+    <tr>
+      <th class="text-center" scope="row">3</th>
+      <td class="text-center">000</td>
+      <td class="text-center">000</td>
+      <td class="text-center">{% for item in ccs_3_hours %}{% if item.gtu == "3" and item.year == "2019" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+      <td class="text-center">{% for item in ccs_3_hours %}{% if item.gtu == "3" and item.year == "2018" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+    </tr>
+    <tr>
+      <th class="text-center" scope="row">TOTAL</th>
+      <td class="text-center">000</td>
+      <td class="text-center">000</td>
+      <td class="text-center"><b>{{ccs_3_2019_total.w_hours__sum}}</b></td>
+      <td class="text-center"><b>{{ccs_3_2018_total.w_hours__sum}}</b></td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+<table class = "table-sm table table-bordered">
+  <thead class="">
+    <tr class="yellow_bg">
+      <th class="text-center" style="width: 15%;" scope="col">Station</th>
+      <th class="text-center" style="width: 5%;" scope="col">GTU </th>
+      <th class="text-center" style="width: 20%;" scope="col">2021</th>
+      <th class="text-center" style="width: 20%;" scope="col">2020</th>
+      <th class="text-center" style="width: 20%;" scope="col">2019</th>
+      <th class="text-center" style="width: 20%;" scope="col">2018</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="text-center" scope="row" rowspan = "4"><h1>CCS-5</h3></th>
+      <th class="text-center">1</th>
+      <td class="text-center">000</td>
+      <td class="text-center">000</td>
+      <td class="text-center">{% for item in ccs_5_hours %}{% if item.gtu == "1" and item.year == "2019" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+      <td class="text-center">{% for item in ccs_5_hours %}{% if item.gtu == "1" and item.year == "2018" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+    </tr>
+    <tr>
+      <th class="text-center" scope="row">2</th>
+      <td class="text-center">000</td>
+      <td class="text-center">000</td>
+      <td class="text-center">{% for item in ccs_5_hours %}{% if item.gtu == "2" and item.year == "2019" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+      <td class="text-center">{% for item in ccs_5_hours %}{% if item.gtu == "2" and item.year == "2018" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+    </tr>
+    <tr>
+      <th class="text-center" scope="row">3</th>
+      <td class="text-center">000</td>
+      <td class="text-center">000</td>
+      <td class="text-center">{% for item in ccs_5_hours %}{% if item.gtu == "3" and item.year == "2019" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+      <td class="text-center">{% for item in ccs_5_hours %}{% if item.gtu == "3" and item.year == "2018" %} <p>{{item.w_hours}}</p> {% endif %}{% endfor %}</td>
+    </tr>
+    <tr>
+      <th class="text-center" scope="row">TOTAL</th>
+      <td class="text-center">000</td>
+      <td class="text-center">000</td>
+      <td class="text-center"><b>{{ccs_5_2019_total.w_hours__sum}}</b></td>
+      <td class="text-center"><b>{{ccs_5_2018_total.w_hours__sum}}</b></td>
+    </tr>
+  </tbody>
+</table>
+
+
+</div>
+</div>
+{% endblock content%}

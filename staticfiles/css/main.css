@@ -1,0 +1,50 @@
+
+
+body{
+		background-color: #eeeeee;
+    margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+	}
+
+	p {
+	    margin-top: 0;
+	    margin-bottom: 0;
+	}
+
+	.table td, .table th {
+	    padding: .3rem;
+	    vertical-align: middle;
+	    border-top: 1px solid #dee2e6;
+	}
+
+	.table-bordered, .table-bordered {
+	    border: 1px solid #dee2e6;
+	    background-color: white;
+	}
+
+
+	#cs_card{
+		background-color: #4cb4c7;
+	}
+
+  #total-orders{
+  		background-color: #4cb4c7;
+  	}
+
+
+  	#orders-delivered{
+  		background-color: #85b3c7;
+  	}
+		#orders-delivered2{
+			background-color: #85b3c7;
+		}
+  	#orders-pending{
+  		background-color: #7CD1C0;
+  	}
+		#bg{
+			background-color: #85b3c7;
+		}
