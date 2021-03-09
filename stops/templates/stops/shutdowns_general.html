@@ -5,9 +5,9 @@
 
 
 <br>
-<div style="height: 100vh">
-  <div class="row-md d-flex justify-content-center">
-    <div class=" sd_choice_div card_shadow rounded d-flex align-items-center me-5">
+<div>
+  <div style="flex-wrap: wrap" class="row-md d-flex justify-content-center">
+    <div style="" class="sd_choice_div card_shadow rounded d-flex align-items-center me-5">
       <ul class="list-group list-group-flush" style="width: 450px;">
         <li class="list-group-item">Добавить останов<a id="download_button" class="btn btn-secondary " style="width:120px; margin-left:100px;" href="{% url 'stops:upload_SD' %}"> + </a></li>
         <li class="list-group-item">
@@ -28,7 +28,7 @@
     </div>
 
     {% if year %}
-
+<div class="row-md d-flex justify-content-center">
     <div style="width: 200px;">
       <div class="col-md ">
         <div class="card_shadow card text-center mb-1" id="cs_card" style="height:210px;">
@@ -82,9 +82,12 @@
       </div>
     </div>
   </div>
+</div>
+
+
 
   <div class="d-flex justify-content-center">
-    <div class="col-md-9 ">
+    <div style="min-width: 950px;">>
       <br>
       <br>
       <h2 class="d-flex justify-content-center light_grey_text">Информация по остановам в {{year}} году</h2>
