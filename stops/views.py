@@ -12,8 +12,7 @@ from django.contrib.auth.decorators import login_required
 import os
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
-
-
+import json
 
 
 
@@ -49,9 +48,6 @@ def loginPage(request):
 def logoutPage(request):
     logout(request)
     return redirect('stops:login')
-
-
-
 
 @login_required(login_url='stops:login')
 def index(request):
@@ -112,27 +108,51 @@ def working_hours(request):
     ccs_4_hours = W_hours.objects.all().filter(station = Station.objects.get(name = "CCS-4"))
     ccs_3_hours = W_hours.objects.all().filter(station = Station.objects.get(name = "CCS-3"))
     ccs_5_hours = W_hours.objects.all().filter(station = Station.objects.get(name = "CCS-5"))
+
     cs_4_2018_total = cs_4_hours.filter(year = '2018').aggregate(Sum('w_hours'))
     cs_4_2019_total = cs_4_hours.filter(year = '2019').aggregate(Sum('w_hours'))
+    cs_4_2020_total = cs_4_hours.filter(year = '2020').aggregate(Sum('w_hours'))
+    cs_4_2021_total = cs_4_hours.filter(year = '2021').aggregate(Sum('w_hours'))
+
     ccs_4_2018_total = ccs_4_hours.filter(year = '2018').aggregate(Sum('w_hours'))
     ccs_4_2019_total = ccs_4_hours.filter(year = '2019').aggregate(Sum('w_hours'))
+    ccs_4_2020_total = ccs_4_hours.filter(year = '2020').aggregate(Sum('w_hours'))
+    ccs_4_2021_total = ccs_4_hours.filter(year = '2021').aggregate(Sum('w_hours'))
+
     ccs_3_2018_total = ccs_3_hours.filter(year = '2018').aggregate(Sum('w_hours'))
     ccs_3_2019_total = ccs_3_hours.filter(year = '2019').aggregate(Sum('w_hours'))
+    ccs_3_2020_total = ccs_3_hours.filter(year = '2020').aggregate(Sum('w_hours'))
+    ccs_3_2021_total = ccs_3_hours.filter(year = '2021').aggregate(Sum('w_hours'))
     ccs_5_2018_total = ccs_5_hours.filter(year = '2018').aggregate(Sum('w_hours'))
     ccs_5_2019_total = ccs_5_hours.filter(year = '2019').aggregate(Sum('w_hours'))
+    ccs_5_2020_total = ccs_5_hours.filter(year = '2020').aggregate(Sum('w_hours'))
+    ccs_5_2021_total = ccs_5_hours.filter(year = '2021').aggregate(Sum('w_hours'))
+
     return render(request, 'stops/hours.html',
                     {'cs_4_hours': cs_4_hours,
                     'ccs_4_hours': ccs_4_hours,
                     'ccs_3_hours': ccs_3_hours,
                     'ccs_5_hours': ccs_5_hours,
+
                     'cs_4_2018_total':cs_4_2018_total,
                     'cs_4_2019_total':cs_4_2019_total,
+                    'cs_4_2020_total':cs_4_2020_total,
+                    'cs_4_2021_total':cs_4_2021_total,
+
                     'ccs_4_2018_total':ccs_4_2018_total,
                     'ccs_4_2019_total':ccs_4_2019_total,
+                    'ccs_4_2020_total':ccs_4_2020_total,
+                    'ccs_4_2021_total':ccs_4_2021_total,
+
                     'ccs_3_2018_total':ccs_3_2018_total,
                     'ccs_3_2019_total':ccs_3_2019_total,
+                    'ccs_3_2020_total':ccs_3_2020_total,
+                    'ccs_3_2021_total':ccs_3_2021_total,
+
                     'ccs_5_2018_total':ccs_5_2018_total,
                     'ccs_5_2019_total':ccs_5_2019_total,
+                    'ccs_5_2020_total':ccs_5_2020_total,
+                    'ccs_5_2021_total':ccs_5_2021_total,
                     })
 
 
@@ -145,3 +165,38 @@ def upload_SD(request):
     else:
         form = SD_add_form()
     return render(request, 'stops/upload_SD.html', {'form': form})
+
+
+def trying(request):
+    lst=[]
+
+    hours_2018 = W_hours.objects.filter(year = "2018")
+    dict_cs_4={}
+    dict_ccs_4={}
+    dict_ccs_3={}
+    dict_ccs_5={}
+    for item in hours_2018:
+        if item.station == Station.objects.get(name = "CS-4"):
+            dict_cs_4["category"] = item.station.name
+            dict_cs_4[item.gtu] = item.w_hours
+        if item.station == Station.objects.get(name = "CCS-4"):
+            dict_ccs_4["category"] = item.station.name
+            dict_ccs_4[item.gtu] = item.w_hours
+        if item.station == Station.objects.get(name = "CCS-3"):
+            dict_ccs_3["category"] = item.station.name
+            dict_ccs_3[item.gtu] = item.w_hours
+        if item.station == Station.objects.get(name = "CCS-5"):
+            dict_ccs_5["category"] = item.station.name
+            dict_ccs_5[item.gtu] = item.w_hours
+
+    lst.append(dict_cs_4)
+    lst.append(dict_ccs_4)
+    lst.append(dict_ccs_3)
+    lst.append(dict_ccs_5)
+
+    app_json = json.dumps(lst)
+    f = open ("stops/templates/stops/try2.json", "w")
+    f.write(str(app_json))
+    f.close()
+
+    return redirect ('stops:index')
