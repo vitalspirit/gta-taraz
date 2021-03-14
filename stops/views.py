@@ -30,6 +30,8 @@ def registerPage(request):
     context={'form': form}
     return render(request, 'stops/register.html', context)
 
+
+
 def loginPage(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -41,31 +43,41 @@ def loginPage(request):
             return redirect('stops:index')
         else:
             messages.info(request, 'Username OR password is incorrect')
-
     context = {}
     return render(request, 'stops/login.html', context)
+
+
 
 def logoutPage(request):
     logout(request)
     return redirect('stops:login')
 
-@login_required(login_url='stops:login')
-def index(request):
-    return render(request, 'stops/dashboard.html')
+
+
+#@login_required(login_url='stops:login')
+#def index(request):
+    #return render(request, 'stops/dashboard.html')
+
+
 
 @login_required(login_url='stops:login')
 def shutdowns(request):
     all_shutdowns = Shutdown.objects.order_by('-datetime')
     return render(request, 'stops/shutdowns.html', {'all_shutdowns': all_shutdowns})
 
+
+
 @login_required(login_url='stops:login')
 def gtu_info(request):
     return render(request, 'stops/gtu_info.html')
 
 
+
 @login_required(login_url='stops:login')
 def shutdowns_general(request):
     return render(request, 'stops/shutdowns_general.html')
+
+
 
 @login_required(login_url='stops:login')
 def shutdowns_general_request(request):
@@ -100,6 +112,9 @@ def shutdowns_general_request(request):
                     'ccs_5_sd_list': ccs_5_sd_list
 
                     })
+
+
+
 
 @login_required(login_url='stops:login')
 def working_hours(request):
@@ -156,6 +171,8 @@ def working_hours(request):
                     })
 
 
+
+
 def upload_SD(request):
     if request.method == 'POST':
         form = SD_add_form(request.POST, request.FILES)
@@ -167,36 +184,43 @@ def upload_SD(request):
     return render(request, 'stops/upload_SD.html', {'form': form})
 
 
-def trying(request):
-    lst=[]
 
-    hours_2018 = W_hours.objects.filter(year = "2018")
-    dict_cs_4={}
-    dict_ccs_4={}
-    dict_ccs_3={}
-    dict_ccs_5={}
-    for item in hours_2018:
-        if item.station == Station.objects.get(name = "CS-4"):
-            dict_cs_4["category"] = item.station.name
-            dict_cs_4[item.gtu] = item.w_hours
-        if item.station == Station.objects.get(name = "CCS-4"):
-            dict_ccs_4["category"] = item.station.name
-            dict_ccs_4[item.gtu] = item.w_hours
-        if item.station == Station.objects.get(name = "CCS-3"):
-            dict_ccs_3["category"] = item.station.name
-            dict_ccs_3[item.gtu] = item.w_hours
-        if item.station == Station.objects.get(name = "CCS-5"):
-            dict_ccs_5["category"] = item.station.name
-            dict_ccs_5[item.gtu] = item.w_hours
 
-    lst.append(dict_cs_4)
-    lst.append(dict_ccs_4)
-    lst.append(dict_ccs_3)
-    lst.append(dict_ccs_5)
 
-    app_json = json.dumps(lst)
-    f = open ("stops/templates/stops/try2.json", "w")
-    f.write(str(app_json))
-    f.close()
+def index(request):
 
-    return redirect ('stops:index')
+    def sub(y):
+        lst=[]
+        hours = W_hours.objects.filter(year = y)
+        dict_cs_4={}
+        dict_ccs_4={}
+        dict_ccs_3={}
+        dict_ccs_5={}
+        for item in hours:
+            if item.station == Station.objects.get(name = "CS-4"):
+                dict_cs_4["category"] = item.station.name
+                dict_cs_4[item.gtu] = item.w_hours
+            if item.station == Station.objects.get(name = "CCS-4"):
+                dict_ccs_4["category"] = item.station.name
+                dict_ccs_4[item.gtu] = item.w_hours
+            if item.station == Station.objects.get(name = "CCS-3"):
+                dict_ccs_3["category"] = item.station.name
+                dict_ccs_3[item.gtu] = item.w_hours
+            if item.station == Station.objects.get(name = "CCS-5"):
+                dict_ccs_5["category"] = item.station.name
+                dict_ccs_5[item.gtu] = item.w_hours
+
+        lst.append(dict_cs_4)
+        lst.append(dict_ccs_4)
+        lst.append(dict_ccs_3)
+        lst.append(dict_ccs_5)
+
+        app_json = json.dumps(lst)
+        f = open (f"stops/templates/stops/{y}.json", "w")
+        f.write(str(app_json))
+        f.close()
+    sub('2018')
+    sub('2019')
+    sub('2020')
+    sub('2021')
+    return render(request, 'stops/dashboard.html')

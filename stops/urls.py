@@ -20,7 +20,7 @@ urlpatterns = [
 
 
     path('shutdowns_general/upload', views.upload_SD, name='upload_SD'),
-    path('trying/', views.trying, name='trying'),
+    
 
 ]
 
