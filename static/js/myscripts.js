@@ -29,7 +29,7 @@ function graphs(y) {
       series.name = name
 
       series.columns.template.tooltipText = "{name}: [bold]{valueY}[/]";
-      series.columns.template.width = am4core.percent(75);
+      series.columns.template.width = am4core.percent(90);
       series.columns.template.column.cornerRadiusTopLeft = 3;
       series.columns.template.column.cornerRadiusTopRight = 3;
       series.columns.template.column.fillOpacity = 0.9;
