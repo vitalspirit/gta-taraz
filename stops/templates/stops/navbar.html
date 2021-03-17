@@ -3,16 +3,19 @@
 <style>
   .hello-msg {
     font-size: 18px;
-    color: #fff;
+    color: #bdf9ff;
     margin-right: 20px;
   }
 </style>
 
-<div >
 
-  <span class="hello-msg">Приветствую, {{request.user}}</span>
-  <span><a class="hello-msg" a href="{% url 'stops:logout'%}">Logout</a></span>
-
+<div>
+  <span class="hello-msg">
+    Welcome, <span style="color:#fff; font-size: 20px;">{{request.user}}</span>
+    <a class="hello-msg" href="{% url 'stops:logout'%}">Logout</a>
+  </span>
+</div>
+<div>
   <ul class="navigation">
     <li><a href="{% url 'stops:index' %}">Показатели</a></li>
     <li><a href="{% url 'stops:shutdowns_general' %}">Остановы</a></li>

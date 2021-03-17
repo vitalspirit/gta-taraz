@@ -1,20 +1,11 @@
 import os
 
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#print(BASE_DIR)
-#print(os.path.join(BASE_DIR, 'db.sqlite3'))
 
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '+4rhbqrhc0sume5n$)s^7s7go3u_$xars6wmd0h8ig31b$n1)q'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
 
 ALLOWED_HOSTS = [
@@ -68,14 +59,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'gtu_stops.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-
-
-
-# Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -119,8 +102,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR)
 #MEDIA_URL = '/images/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-import dj_database_url
 
-db_from_env = dj_database_url.config()
-DATABASES = { 'default': dj_database_url.config() }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }}
+
+
+#import dj_database_url
+#db_from_env = dj_database_url.config()
+#DATABASES = { 'default': dj_database_url.config() }
 #DATABASES['dfault'].update(db_from_env)

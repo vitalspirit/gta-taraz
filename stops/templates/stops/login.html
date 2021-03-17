@@ -14,13 +14,16 @@
 			margin: 0;
 			padding: 0;
 			height: 100%;
-			background: #7abecc !important;
+			background-image: linear-gradient( 179.4deg,  rgba(33,150,243,1) 1.8%, rgba(22,255,245,0.60) 97.1% );
+			background-repeat: no-repeat;
+			background-size: cover;
+			color: #00719c;
 		}
 		.user_card {
 			width: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: #74cfbf;
+			background: #f2feff;;
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -40,27 +43,29 @@
 		}
 
 		#form-title{
-			color: #fff;
+			color: #4d6880;
 
 		}
 
 		.login_btn {
 			width: 100%;
-			background: #33ccff !important;
+			background: #4d6880 !important;
 			color: white !important;
 		}
 		.login_btn:focus {
 			box-shadow: none !important;
 			outline: 0px !important;
+			background: #001f2b !important;
 		}
 		.login_container {
 			padding: 0 2rem;
 		}
 		.input-group-text {
-			background: #f7ba5b !important;
+			background: #4d6880 !important;
 			color: white !important;
 			border: 0 !important;
 			border-radius: 0.25rem 0 0 0.25rem !important;
+			font-size: 20px;
 		}
 		.input_user,
 		.input_pass:focus {
@@ -112,7 +117,7 @@
             <p id="messages" >{{message}}</p>
         {% endfor %}
 				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
+					<div class="d-flex justify-content-center">
 						Don't have an account? <a href="{% url 'stops:register' %}" class="ml-2">Sign Up</a>
 					</div>
 

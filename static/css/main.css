@@ -2,7 +2,7 @@ html, body{
     font-family: 'Montserrat', sans-serif;
   	-webkit-font-smoothing: antialiased;
   	-moz-osx-font-smoothing: grayscale;
-		color: #324875;
+		color: #00719c;
 		min-height: 100%;
 		margin: 0;
 		padding: 0;
@@ -18,6 +18,10 @@ p {
 #download_button{
 		background-color: #4d6880 !important;
 	}
+
+.download_button{
+  		background-color: #4d6880 !important;
+  	}
 #cs_card{
 	  background-color: #f7faff;
 	}
@@ -123,7 +127,9 @@ body {
   text-decoration: none;
   display: block;
   padding: 1em;
-  color: white;
+  font-size: 20px;
+  color: #bdf9ff;
+  margin-right: 20px;
 }
 
 .navigation a:hover {

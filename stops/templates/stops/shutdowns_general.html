@@ -6,7 +6,7 @@
 
 <br>
 <div>
-  <div style="flex-wrap: wrap" class="row-md d-flex justify-content-center">
+  <div style="padding:0px 35px; flex-wrap: wrap" class="row-md d-flex justify-content-center ">
     <div style="" class="sd_choice_div card_shadow rounded d-flex align-items-center me-5">
       <ul class="list-group list-group-flush" style="width: 450px;">
         <li class="list-group-item">Добавить останов<a id="download_button" class="btn btn-secondary " style="width:120px; margin-left:100px;" href="{% url 'stops:upload_SD' %}"> + </a></li>
@@ -29,7 +29,7 @@
 
     {% if year %}
 <div class="row-md d-flex justify-content-center">
-    <div style="width: 200px;">
+    <div style="width: 190px;">
       <div class="col-md ">
         <div class="card_shadow card text-center mb-1" id="cs_card" style="height:210px;">
           <div class="card-header">
@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <div style="width: 200px;">
+    <div style="width: 190px;">
       <div class="col-md">
         <div class="card_shadow card text-center mb-3" id="cs_card" style="height:210px;">
           <div class="card-header">
@@ -55,7 +55,7 @@
         </div>
       </div>
     </div>
-    <div style="width: 200px;">
+    <div style="width: 190px;">
       <div class="col-md">
         <div class="card_shadow card text-center mb-3" id="cs_card" style="height:210px;">
           <div class="card-header">
@@ -68,7 +68,7 @@
         </div>
       </div>
     </div>
-    <div style="width: 200px;">
+    <div style="width: 190px;">
       <div class="col-md">
         <div class="card_shadow card text-center mb-3" id="cs_card" style="height:210px;">
           <div class="card-header">
@@ -87,14 +87,17 @@
 
 
   <div class="d-flex justify-content-center">
-    <div style="min-width: 950px;">>
+
       <br>
       <br>
-      <h2 class="d-flex justify-content-center light_grey_text">Информация по остановам в {{year}} году</h2>
+
+
+      <div class="mx-3" style="padding: 15px 15px; min-width:80%; background-color:#f2feff;">
+      <h2 class="d-flex justify-content-center">Информация по остановам в {{year}} году</h2>
       {% if cs_4_sd_count_year > 0 %}
-      <div class="card card-body">
-        <a class="btn btn-lg btn-block" disabled href="">CS-4</a>
-        <table class="table table-sm">
+      <div class="card card-body card_shadow" >
+        <h2>CS-4</h2>
+        <table class="table table-sm " >
           <tr class="yellow_bg">
             <td class="text-center small_text" style="width: 15%;">Дата и время останова</td>
             <th class="text-center small_text" style="width: 5%;">ГПА №</th>
@@ -122,7 +125,7 @@
       {% if ccs_4_sd_count_year > 0 %}
       <hr>
       <div class="card card-body">
-        <a class="btn btn-lg btn-block" disabled href="">CCS-4</a>
+        <h2>CCS-4</h2>
         <table class="table table-sm">
           <tr class="yellow_bg">
             <td class="text-center small_text" style="width: 15%;">Дата и время останова</td>
@@ -151,7 +154,7 @@
       {% if ccs_3_sd_count_year > 0 %}
       <hr>
       <div class="card card-body">
-        <a class="btn btn-lg btn-block" disabled href="">CCS-3</a>
+        <h2>CCS-3</h2>
         <table class="table table-sm">
           <tr class="yellow_bg">
             <td class="text-center small_text" style="width: 15%;">Дата и время останова</td>
@@ -180,7 +183,7 @@
       {% if ccs_5_sd_count_year > 0 %}
       <hr>
       <div class="card card-body">
-        <a class="btn btn-lg btn-block" disabled href="">CCS-5</a>
+        <h2>CCS-5</h2>
         <table class="table table-sm">
           <tr class="yellow_bg">
             <td class="text-center small_text" style="width: 15%;">Дата и время останова</td>
@@ -205,8 +208,9 @@
           {% endfor %}
         </table>
       </div>
+      </div>
       {% endif %}
-    </div>
+
 
     {% endif %}
 
