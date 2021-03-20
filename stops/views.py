@@ -172,7 +172,7 @@ def working_hours(request):
 
 
 
-
+@login_required(login_url='stops:login')
 def upload_SD(request):
     if request.method == 'POST':
         form = SD_add_form(request.POST, request.FILES)
@@ -186,7 +186,7 @@ def upload_SD(request):
 
 
 
-
+@login_required(login_url='stops:login')
 def index(request):
 
     def sub(y):

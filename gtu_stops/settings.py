@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
     'stops',
 
 ]
@@ -108,6 +109,24 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }}
+
+#S3 BUCKETS CONFIG
+
+AWS_ACCESS_KEY_ID = 'AKIAQXKKD7RGR24FRJHD'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'gta-taraz-sd-bucket'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_LOCATION = "acts/"
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+
+
+
+
+
+
 
 
 #import dj_database_url
