@@ -7,17 +7,19 @@ function graphs(y) {
 
     var xAxis = chart.xAxes.push(new am4charts.CategoryAxis())
     xAxis.dataFields.category = 'category'
-    xAxis.renderer.cellStartLocation = 0.1
-    xAxis.renderer.cellEndLocation = 0.9
-    xAxis.renderer.grid.template.location = 0;
+    xAxis.renderer.cellStartLocation = 0.2
+    xAxis.renderer.cellEndLocation = 0.78
+    xAxis.renderer.grid.template.location = 1;
     xAxis.renderer.inside = true;
     xAxis.renderer.labels.template.valign = "top";
     xAxis.renderer.labels.template.fontSize = 12;
+    xAxis.renderer.minGridDistance = 1;
 
     var yAxis = chart.yAxes.push(new am4charts.ValueAxis());
     yAxis.min = 0;
     yAxis.max = 6000;
     yAxis.renderer.labels.template.fontSize = 10;
+    yAxis.renderer.minGridDistance = 20;
 
 
     function createSeries(value, name) {
@@ -29,7 +31,7 @@ function graphs(y) {
       series.name = name
 
       series.columns.template.tooltipText = "{name}: [bold]{valueY}[/]";
-      series.columns.template.width = am4core.percent(90);
+      series.columns.template.width = am4core.percent(85);
       series.columns.template.column.cornerRadiusTopLeft = 3;
       series.columns.template.column.cornerRadiusTopRight = 3;
       series.columns.template.column.fillOpacity = 0.9;
