@@ -35,8 +35,9 @@ p {
 }
 
 .small_text {
-	font-size: 15px !important;
-	font-weight: 500;
+	font-size: 12px !important;
+  forn-weight: 500;
+
 }
 
 .yellow_bg {
@@ -55,9 +56,9 @@ p {
 
 
 .table td, .table th {
-	   padding: .3rem;
-	   vertical-align: middle;
-	   
+    padding: 4px;
+	  vertical-align: middle;
+
 
 }
 
@@ -72,9 +73,7 @@ p {
 	margin-right: 20px;
 }
 
-.small_txt {
-	font-size: 10px;
-}
+
 
 
 
@@ -127,9 +126,9 @@ body {
   text-decoration: none;
   display: block;
   padding: 1em;
-  font-size: 20px;
+  font-size: 14px;
   color: #bdf9ff;
-  margin-right: 20px;
+  margin-right: 0px;
 }
 
 .navigation a:hover {

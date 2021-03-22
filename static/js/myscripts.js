@@ -52,10 +52,10 @@ function graphs(y) {
     /*chart.dataSource.url = "{% url 'stops:trying' %}";*/
     chart.dataSource.url = `../stops/templates/stops/${y}.json`;
 
-    createSeries('1', 'U#1');
-    createSeries('2', 'U#2');
-    createSeries('3', 'U#3');
-    createSeries('4', 'U#4');
+    createSeries('1', 'U1');
+    createSeries('2', 'U2');
+    createSeries('3', 'U3');
+    createSeries('4', 'U4');
 
   }); // end am4core.ready()
 }
